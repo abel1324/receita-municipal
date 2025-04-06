@@ -1,6 +1,6 @@
-# Sistema de Controle da Receita
+# Sistema de Controle da Receita Municipal
 
-Um sistema para controle da receita integrado com Supabase.
+Um sistema para controle da receita municipal integrado com Supabase.
 
 ## Configuração
 
@@ -27,4 +27,4 @@ Um sistema para controle da receita integrado com Supabase.
 - Next.js
 - React
 - Supabase
-- JavaScript 
+- JavaScript
