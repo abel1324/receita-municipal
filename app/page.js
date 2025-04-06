@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
+import Link from 'next/link';
 
 export default function Home() {
   const [status, setStatus] = useState('Verificando conexão...');
@@ -34,11 +35,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-4">
-      <h1 className="text-2xl font-bold mb-4">Sistema de Controle da Receita</h1>
+    <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-gray-50">
+      <h1 className="text-3xl font-bold mb-6">Sistema de Controle da Receita</h1>
       
-      <div className="p-4 border rounded shadow max-w-md w-full">
-        <h2 className="text-xl mb-2">Status do Supabase</h2>
+      <div className="p-6 border rounded shadow max-w-md w-full mb-6 bg-white">
+        <h2 className="text-xl mb-4 font-semibold">Status do Supabase</h2>
         
         <div className={`p-3 rounded ${
           isConnected === null ? 'bg-gray-100' : 
@@ -58,6 +59,24 @@ export default function Home() {
           </div>
         )}
       </div>
+
+      {isConnected && (
+        <div className="flex flex-col gap-4 w-full max-w-md">
+          <Link 
+            href="/login" 
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded text-center"
+          >
+            Acessar o Sistema
+          </Link>
+          
+          <Link 
+            href="/admin" 
+            className="w-full bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded text-center"
+          >
+            Acessar Administração
+          </Link>
+        </div>
+      )}
     </div>
   );
 } 
