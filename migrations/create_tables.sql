@@ -22,3 +22,37 @@ CREATE TABLE usuarios (
   data_criacao TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   ultimo_acesso TIMESTAMP WITH TIME ZONE
 ); 
+
+CREATE TABLE tipos_servicos (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  nome VARCHAR(255) NOT NULL,
+  descricao TEXT,
+  categoria VARCHAR(100) NOT NULL,
+  ativo BOOLEAN DEFAULT true
+);
+
+CREATE TABLE receitas (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  orgao_id UUID REFERENCES orgaos(id) NOT NULL,
+  tipo_servico_id UUID REFERENCES tipos_servicos(id) NOT NULL,
+  quantidade INTEGER NOT NULL,
+  valor_unitario DECIMAL(15, 2) NOT NULL,
+  valor_total DECIMAL(15, 2) NOT NULL,
+  data_recebimento TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  usuario_registro_id UUID REFERENCES usuarios(id) NOT NULL,
+  referencia VARCHAR(100),
+  observacoes TEXT
+);
+
+CREATE TABLE relatorios (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  titulo VARCHAR(255) NOT NULL,
+  descricao TEXT,
+  data_inicio TIMESTAMP WITH TIME ZONE NOT NULL,
+  data_fim TIMESTAMP WITH TIME ZONE NOT NULL,
+  data_geracao TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  usuario_id UUID REFERENCES usuarios(id) NOT NULL,
+  filtros JSONB,
+  resultados JSONB
+);
+

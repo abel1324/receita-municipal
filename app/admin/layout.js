@@ -1,15 +1,20 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const navigation = [
     { name: 'Dashboard', href: '/admin' },
     { name: 'Órgãos', href: '/admin/orgaos' },
-    { name: 'Usuários', href: '/admin/usuarios' }
+    { name: 'Usuários', href: '/admin/usuarios' },
+    { name: 'Tipos de Serviços', href: '/admin/tipos-servicos' },
+    { name: 'Receitas', href: '/admin/receitas' },
+    { name: 'Relatórios', href: '/admin/relatorios' }
   ];
 
   return (
